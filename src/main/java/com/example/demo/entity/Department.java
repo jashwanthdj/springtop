@@ -3,11 +3,10 @@ package com.example.demo.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +16,7 @@ public class Department {@Id
 @GeneratedValue(generator = "department_id_seq", strategy = GenerationType.AUTO)
 private Long id;
     private String name;
-
-
+    @JoinColumn(referencedColumnName = "id", name = "department_id")
+    @OneToMany
+    List<Employee> employeeList;
 }
