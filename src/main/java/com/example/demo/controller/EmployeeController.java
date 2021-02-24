@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.EmployeeRequestDTO;
 import com.example.demo.dto.EmployeeResponseDTO;
+import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -32,6 +35,11 @@ EmployeeService employeeService;
     @DeleteMapping("/{id}")
     public EmployeeResponseDTO deleteEmployee(@PathVariable("id") long id){
         return employeeService.deleteEmployeeById(id);
+    }
+    @GetMapping({"/department/{id}"})
+    public List<EmployeeResponseDTO> getEmployeeListByDepartment(
+            @PathVariable("id") Long departmentId) {
+        return employeeService.getEmployeeListByDepartment(departmentId);
     }
 
 }
