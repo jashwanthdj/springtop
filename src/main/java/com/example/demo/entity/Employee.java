@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ public class Employee {
     @GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @ManyToOne()
+    @ManyToOne(cascade =CascadeType.ALL)
     private Department department;
 
 

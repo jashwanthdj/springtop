@@ -116,8 +116,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeResponseDTO> getEmployeeListByDepartment(Long departmentId) {
-        Department department=departmentRepository.findById(departmentId).get();
-        List<Employee> employeeList=employeeRepository.findByDepartment(department);
+        //1)Department department=departmentRepository.findById(departmentId).get();
+        //1)List<Employee> employeeList=employeeRepository.findByDepartment(department);
+        //2)List<Employee> employeeList=employeeRepository.findByDepartment_Id(departmentId);
+        List<Employee> employeeList= employeeRepository.GetEmployeeListByDepartmentId(departmentId);
         List<EmployeeResponseDTO> employeeResponseDTOList=new ArrayList<>();
         for(Employee employee:employeeList){
             EmployeeResponseDTO responseDto = new EmployeeResponseDTO();
@@ -128,6 +130,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return employeeResponseDTOList;
     }
+
 
 
 }
